@@ -59,4 +59,34 @@ public class Hotel {
             System.out.println();
         }
     }
+
+    //当用户办理入住的时候，需要将房间状态改为占用
+    public void order(String id){
+        for (int i = 0; i < rooms.length; i++) {
+            for (int j = 0; j < rooms[i].length; j++) {
+                if(rooms[i][j].getId().equals(id)){
+                    rooms[i][j].setUse(true);
+                    return;
+                    //return 退出所有循环，break退出本次循环
+                }
+
+            }
+
+        }
+    }
+
+    //提供一个退房的方法
+    public void checkOut(String id){
+        for (int i = 0; i < rooms.length; i++) {
+            for (int j = 0; j < rooms[i].length; j++) {
+                if(rooms[i][j].getId().equals(id)){
+                    rooms[i][j].setUse(false);
+                    return;
+                    //return 退出所有循环，break退出本次循环
+                }
+
+            }
+
+        }
+    }
 }
