@@ -27,11 +27,11 @@ public class HotelTest01 {
             if("预定".equals(input)){
                 System.out.println("请输入房间预定编号");
                 String id = s.next();
-                hotel.order(id);
+                hotel.inOrOut(id,true);
             }else if("退房".equals(input)){
                 System.out.println("请输入房间退房编号");
                 String id = s.next();
-                hotel.checkOut(id);
+                hotel.inOrOut(id,false);
             }else{
                 System.out.println("请输入预定或退房");
             }
