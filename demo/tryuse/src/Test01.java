@@ -16,15 +16,14 @@ public class Test01 {
     }
 
     public static void check(){
-        BufferedInputStream bis = null;
 
-        BufferedOutputStream bos = null;
+        try(  BufferedInputStream bis = new BufferedInputStream(
+                new FileInputStream(
+                        "E:\\My Note\\MyProject\\small_case\\demo\\tryuse\\src\\config.properties"));
 
+              BufferedOutputStream   bos = new BufferedOutputStream(new FileOutputStream
+                      ("E:\\My Note\\MyProject\\small_case\\demo\\tryuse\\src\\config.properties"))) {
 
-        try {
-            bis = new BufferedInputStream(
-                    new FileInputStream(
-                            "E:\\My Note\\MyProject\\small_case\\demo\\tryuse\\src\\config.properties"));
 
             int temp = bis.read();
             //解密处理
@@ -38,8 +37,7 @@ public class Test01 {
                 count--;
                 System.out.println("您的试用次数还有"+count+"次");
 
-                bos = new BufferedOutputStream(new FileOutputStream
-                        ("E:\\My Note\\MyProject\\small_case\\demo\\tryuse\\src\\config.properties"));
+
                 //做加密处理
                 bos.write(count^66);
                 bos.flush();
@@ -49,22 +47,6 @@ public class Test01 {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if(bis!=null){
-                try {
-                    bis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if(bos!=null){
-                try {
-                    bos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 
