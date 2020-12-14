@@ -49,17 +49,31 @@ public class Test01 {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            if(bis!=null){
+                try {
+                    bis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if(bos!=null){
+                try {
+                    bos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
     //向配置文件中初始化试用次数的值
     public static void code(){
-        BufferedOutputStream bos = null;
-        try {
-
-            bos = new BufferedOutputStream(
-                    new FileOutputStream(
-                            "E:\\My Note\\MyProject\\small_case\\demo\\tryuse\\src\\config.properties"));
+        //BufferedOutputStream bos = null;
+        //jdk7的写法，会主动关闭相关的资源 AutoCloseable
+        try( BufferedOutputStream    bos = new BufferedOutputStream(new FileOutputStream("E:\\My Note\\MyProject\\small_case\\demo\\tryuse\\src\\config.properties"))
+        ){
 
             bos.write(3^66);
             bos.flush();
