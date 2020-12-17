@@ -1,0 +1,16 @@
+
+http无状态协议
+
+Browser   Server
+
+浏览器
+
+商品的展示    ShowBookServlet  查看购物车，清空购物车
+
+商品数据的初始化  DBUtil  模拟数据库 把数据写死在这个类
+
+添加购物车 AddCartServlet 向购物车中添加商品信息
+
+查看购物车 ShowCartServlet 将购物车中的商品展示
+
+清空购物车  ClearCartServlet 将购物车的数据清空
