@@ -1,0 +1,11 @@
+.label-circle {
+    width:30px;
+    height:30px;
+    padding: 9px 9px;
+    border-radius:16px;
+    text-align: center;
+    font-size:12px;
+    line-height: 1.428571429;
+}
+
+

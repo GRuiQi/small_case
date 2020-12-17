@@ -6,8 +6,10 @@
       <module fileurl="file://$PROJECT_DIR$/array_test/02_array_test.iml" filepath="$PROJECT_DIR$/array_test/02_array_test.iml" />
       <module fileurl="file://$PROJECT_DIR$/tryuse/03_tryuse.iml" filepath="$PROJECT_DIR$/tryuse/03_tryuse.iml" />
       <module fileurl="file://$PROJECT_DIR$/04_playingCards/04_playingCards.iml" filepath="$PROJECT_DIR$/04_playingCards/04_playingCards.iml" />
+      <module fileurl="file://$PROJECT_DIR$/05_Thread/05_Thread.iml" filepath="$PROJECT_DIR$/05_Thread/05_Thread.iml" />
       <module fileurl="file://$PROJECT_DIR$/ThreadTest/ThreadTest.iml" filepath="$PROJECT_DIR$/ThreadTest/ThreadTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo.iml" filepath="$PROJECT_DIR$/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/double_chromosphere/double_chromosphere.iml" filepath="$PROJECT_DIR$/double_chromosphere/double_chromosphere.iml" />
     </modules>
   </component>
 </project>

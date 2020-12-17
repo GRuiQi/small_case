@@ -5,6 +5,10 @@ import java.util.List;
 /**
  * 初始化一幅扑克牌
  * 将初始化的扑克牌放到集合List
+ *
+ * List:存放Map索引，洗牌只是洗List. Collections.shuffle只接受List
+ * Map:key索引。value扑克的点数
+ * TreeSet: TreeSet特性可以排序。 洗牌后进行发牌。根据索引去map里看下是什么牌
  */
 public class Test01 {
 
