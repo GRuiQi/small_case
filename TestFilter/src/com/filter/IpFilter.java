@@ -16,7 +16,7 @@ public class IpFilter implements Filter {
         String ip = req.getRemoteAddr();
         List<String> ipList = IPUtil.getIpList();
         if(ipList.contains(ip)){
-            System.out.println("非法ip");
+            System.out.println("非法ip:"+ip);
             resp.getWriter().print("您所在的ip段被禁止访问");
             return;
         }
