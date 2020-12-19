@@ -147,3 +147,30 @@ Edit Configurations
 
 > num和number是jvm堆中的两段内存空间里的对东西
 
+
+
+## 案例
+
+[使用二维数组实现酒店房间管理系统](https://github.com/GRuiQi/small_case/tree/main/demo/array_test)
+
+[模拟软件使用次数](https://github.com/GRuiQi/small_case/tree/main/demo/tryuse)
+
+[扑克牌的洗牌和发牌](https://github.com/GRuiQi/small_case/tree/main/demo/04_playingCards)
+
+[多线程模拟多级公司售卖电影票](https://github.com/GRuiQi/small_case/tree/main/demo/ThreadTest/src)
+
+[基于web双色球随机生成](https://github.com/GRuiQi/small_case/tree/main/dcb)
+
+[基于web的购物车](https://github.com/GRuiQi/small_case/tree/main/shopping_card)
+
+[web踢出在线用户](https://github.com/GRuiQi/small_case/tree/main/web_manager)
+
+[jdbc、数据库连接池](https://github.com/GRuiQi/small_case/tree/main/connection_pool)
+
+[使用ajax校验用户名是否存在](https://github.com/GRuiQi/small_case/tree/main/online_user)
+
+[filter的使用案例](https://github.com/GRuiQi/small_case/tree/main/TestFilter)
+解决软乱码问题
+控制权限访问
+过滤非法ip
+计算请求响应的耗时
