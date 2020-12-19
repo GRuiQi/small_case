@@ -1,6 +1,8 @@
 package util;
 
+import java.io.InputStream;
 import java.sql.*;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
@@ -13,6 +15,11 @@ public class DBUtil {
     private static String password;
 
     static {
+
+//        //.properties要放在src路径下
+//        InputStream in = DBUtil.class.getClassLoader().getResourceAsStream("db.properties");
+//        Properties properties = new Properties();
+//        properties.load(in);
         //读取配置文件
          ResourceBundle rb = ResourceBundle.getBundle("db");
          driver = rb.getString("driver");
