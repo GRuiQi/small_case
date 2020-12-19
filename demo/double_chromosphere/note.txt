@@ -1,8 +1,0 @@
-前台：
-html
-bootstrap
-jQuery
-ajax
-
-后台：
-servlet
