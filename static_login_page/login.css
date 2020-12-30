@@ -1,8 +1,45 @@
 #login-box{
     width:30%;
-    height:300px;
-    border: 1px solid #000000;
+    height:250px;
+    border: 1px solid;
     /* 左右自动 */
     margin: 0 auto; 
-    margin-top: 15%;
+    margin-top: 10%;
+    /* 文本居中 */
+    text-align:center;
+    background:#00000060;
+    padding: 20px 50px;
+}
+
+#login-box h1{
+    color:#fff;
+}
+
+#login-box .form{
+    margin-top: 50px;
+}
+
+#login-box .form .item{
+    margin-top:15px;
+}
+
+#login-box .form .item i{
+    color: #fff;
+}
+
+#login-box .form .item input{
+    font-size:18px;
+    width:180px;
+    border: 0;
+    border-bottom:2px solid #fff;
+    /* 输入框透明 */
+    background: #FFFFFF00;
+    color:#fff;
+    padding:5px 10px;
+}
+
+#login-box button{
+    margin-top: 25px;
+    width:160px;
+    height:30px;
 }
