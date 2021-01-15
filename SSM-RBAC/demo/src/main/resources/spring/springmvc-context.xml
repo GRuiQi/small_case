@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+<!--
+        SpringMVC`框架的核心是处理数据的流转，所以需要在`springmvc-context.xml`
+        配置文件中增加控制器对象（`Controller`）扫描的相关配置。扫描后由`
+        SpringMVC`框架进行管理和组合。
+    -->
+
+    <context:component-scan base-package="com.atguigu.*" use-default-filters="false" >
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--静态资源不被springMVC拦截 ,将它们交给tomcat处理-->
+    <mvc:default-servlet-handler></mvc:default-servlet-handler>
+    <!-- 能支持springmvc更高级的一些功能，JSR303校验，快捷的ajax...映射动态请求 -->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+    <!--视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--文件上传解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="2097152"/>
+        <property name="resolveLazily" value="true"/>
+    </bean>
+    
+    <!--配置自定义拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--所有的请求都会被拦截-->
+            <mvc:mapping path="/**" />
+            <!--排除拦截-->
+            <mvc:exclude-mapping path="/login" />
+            <mvc:exclude-mapping path="/doAJAXLogin" />
+            <mvc:exclude-mapping path="/bootstrap/**" />
+            <mvc:exclude-mapping path="/css/**" />
+            <mvc:exclude-mapping path="/fonts/**" />
+            <mvc:exclude-mapping path="/img/**" />
+            <mvc:exclude-mapping path="/jquery/**" />
+            <mvc:exclude-mapping path="/layer/**" />
+            <mvc:exclude-mapping path="/script/**" />
+            <mvc:exclude-mapping path="/ztree/**" />
+            <bean class="com.atguigu.web.LoginInterceptor"></bean>
+        </mvc:interceptor>
+       <!-- <mvc:interceptor>
+            <mvc:mapping path="/**" />
+            <mvc:exclude-mapping path="/login" />
+            <mvc:exclude-mapping path="/doAJAXLogin" />
+            <mvc:exclude-mapping path="/bootstrap/**" />
+            <mvc:exclude-mapping path="/css/**" />
+            <mvc:exclude-mapping path="/fonts/**" />
+            <mvc:exclude-mapping path="/img/**" />
+            <mvc:exclude-mapping path="/jquery/**" />
+            <mvc:exclude-mapping path="/layer/**" />
+            <mvc:exclude-mapping path="/script/**" />
+            <mvc:exclude-mapping path="/ztree/**" />
+            <bean class="com.atguigu.web.AuthInterceptor"></bean>
+        </mvc:interceptor>-->
+    </mvc:interceptors>
+</beans>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+
+    <!--
+        Controller注解的的作用是声明控制器（处理器）类。
+        从数据流转的角度，这个类应该是由`SpringMVC`框架进行管理和组织的，
+        所以不需要由`Spring`框架扫描。
+    -->
+    <context:component-scan base-package="com.atguigu.*" >
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+
+    <!--mybatis的对象和数据源委托给spring来管理-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" >
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/atcrowdfunding?rewriteBatchedStatements=true&amp;useUnicode=true&amp;characterEncoding=utf8"/>
+        <property name="user" value="root"/>
+        <property name="password" value="123"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
+        <property name="configLocation" value="classpath:mybatis/config.xml" />
+        <property name="dataSource" ref="dataSource" />
+        <!-- 指定mybatis，mapper文件的位置  两种方法-->
+        <!--<property name="mapperLocations" value="classpath:com/atguigu/mapper/*.xml"></property>-->
+        <property name="mapperLocations" value="classpath:com/atguigu/dao/*.xml">
+           <!-- <list>
+                &lt;!&ndash;扫描mapper配置文件夹&ndash;&gt;
+                &lt;!&ndash;*表示所有的项目都可以读到  &ndash;&gt;
+                <value>classpath*:mybatis/mapper-*.xml</value>
+
+            </list>-->
+        </property>
+    </bean>
+
+    <!--扫描mapper接口，因为mybatis是代理dao接口和数据库交互的-->
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer" >
+        <!--扫描所有dao接口的实现，加入到ioc容器中 -->
+        <property name="basePackage" value="com.atguigu.dao" />
+    </bean>
+
+    <!--创建事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--配置通知-->
+    <tx:advice id="transactionAdvice" transaction-manager="transactionManager" >
+        <tx:attributes>
+            <!--运行期异常就会回滚-->
+            <tx:method name="*" propagation="REQUIRED" isolation="DEFAULT" rollback-for="java.lang.Exception" />
+            <tx:method name="query*" read-only="true" />
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut expression="execution(* com.atguigu.service.*Service.*(..))" id="pointcut"/>
+        <!--切面：将通知应用到切入点-->
+        <aop:advisor advice-ref="transactionAdvice" pointcut-ref="pointcut"/>
+    </aop:config>
+
+</beans>
